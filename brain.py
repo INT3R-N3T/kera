@@ -9,26 +9,53 @@
 import speech_recognition as sr
 
 
-#Iniciate Speech Regognizer
-r = sr.Recognizer()
+
+def Voicetotext(mic,r):
 
 
-#Takes audiofile and records it to audio file (it is an AudioData instance now)
-harvard = sr.AudioFile('audio_files_harvard.wav')
+    with mic as source:
+        r.adjust_for_ambient_noise(source)
+        audio = r.listen(source)
 
-with harvard as source:
+
+    #Takes audiofile and records it to audio file (it is an AudioData instance now)
+    #harvard = sr.AudioFile('audio_files_harvard.wav')
+
+    #with harvard as source:
 
     # the duration ajusts the testing phase to understand the background noise
     # In further development we could use SciPy to preprocess the audio
     #r.adjust_for_ambient_noise(source, duration=0.5)
 
-    audio = r.record(source)
+    #    audio = r.record(source)
 
 
-#Meathod that uses google API to recognize the speech
-#There are duration arguments depending on how much of the audio you want to parce, same thing with record it has a duration as well
-speech = r.recognize_google(audio)
+    #Meathod that uses google API to recognize the speech
+    #There are duration arguments depending on how much of the audio you want to parce, same thing with record it has a duration as well
+    #Need to use try and except blocks cause this returns an UnknownValueError exception
 
-print(speech)
+    try:
+        speech = r.recognize_google(audio)
 
-#NEXT DAY HEY LOOOOOK OVER HERE LOOK OVER HERE DO PIP INSTALL PYAUDIO------------------------------------------------------------------------------------
+    except sr.RequestError:
+        speech = "Im sorry there was an error"
+    
+    except sr.UnknownValueError:
+        speech = "I couldn't quite make that out"
+
+    return speech
+
+
+
+#Iniciate Speech Regognizer
+r = sr.Recognizer()
+
+#Iniciate Microphone
+#To iniciate microphone on like a raspberry pieuse list_microphone_names(), then do mic = sr.Microphone(device_index=(whatever index the mic u want is))
+
+mic = sr.Microphone()
+
+
+
+print(Voicetotext(mic, r))
+

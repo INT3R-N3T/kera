@@ -47,6 +47,8 @@ def Voicetotext(mic,r):
 
 
 
+
+
 #Iniciate Speech Regognizer
 r = sr.Recognizer()
 

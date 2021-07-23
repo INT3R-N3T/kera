@@ -58,8 +58,7 @@ r = sr.Recognizer()
 mic = sr.Microphone()
 
 
-if __name__ == "___main__":
+if __name__ == "__main__":
     print(Voicetotext(mic, r))
-else:
-    speechText = Voicetotext(mic, r)
+
 

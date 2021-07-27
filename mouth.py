@@ -29,12 +29,13 @@ for voice in voices:
 
 ----------------------------------------------------------------------"""
 
-#speech cmd
-engine.say("I love, python")
-engine.say("it is pretty cool")
+def speak(script):
 
-#end speech with
-engine.runAndWait()
+    #speech cmd
+    engine.say(script)
+
+    #end speech with
+    engine.runAndWait()
 
 
 

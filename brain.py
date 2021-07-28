@@ -25,7 +25,7 @@ with open("keywords.json") as f:
     global keywords
     keywords = json.load(f)
      
-
+#get greeting
 while True:
 
 
@@ -34,10 +34,12 @@ while True:
 
     # This if trys to find hello and key
     for greeting in keywords["greetings"]:
+
+        # I think i also could have used if (greeting in greetingRequest) & (Kira in greetingRequest) but all well. I might change but im attached to this code, any really good reason for one or the other?
         if (greetingRequest.find(greeting) != -1) & (greetingRequest.find("Kira") != -1):
         
             # will speak the greeting
-            speak("Hey Dom, how are you today")
+            speak(random.choice(list(keywords['greetings'])) + ",Dom")
 
             break
 

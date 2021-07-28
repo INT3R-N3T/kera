@@ -17,8 +17,10 @@ import json
 from ear import *
 from mouth import *
 
+with open("keywords.json") as f:
+    keywords = json.load(f)
 
-
+print(keywords)
 
 while True:
 

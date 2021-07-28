@@ -13,14 +13,18 @@ and then use other moduels to follow through with that cmd.
 import os
 import time
 import json
+import random
 
 from ear import *
 from mouth import *
 
-with open("keywords.json") as f:
-    keywords = json.load(f)
 
-print(keywords)
+#WARNING all keywords are in lower case cause ear gives lowercase values so watch out for uppercase cmd
+with open("keywords.json") as f:
+    
+    global keywords
+    keywords = json.load(f)
+     
 
 while True:
 
@@ -29,14 +33,20 @@ while True:
     greetingRequest = Voicetotext(mic, r)
 
     # This if trys to find hello and key
-    if (greetingRequest.find("hello") != -1) & (greetingRequest.find("Kira") != -1):
+    for greeting in keywords["greetings"]:
+        if (greetingRequest.find(greeting) != -1) & (greetingRequest.find("Kira") != -1):
         
-        # will speak the greeting
-        speak("Hey Dom, how are you today")
-        break
+            # will speak the greeting
+            speak("Hey Dom, how are you today")
+
+            break
+
+# I just wanted to say this for else statemetn is beutiful
     else:
         time.sleep(1)
         continue
+
+    break
 
 
 
